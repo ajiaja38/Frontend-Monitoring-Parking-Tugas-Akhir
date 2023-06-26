@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;800&display=swap");
+
+* {
+  @apply scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-slate-100 scrollbar-thumb-rounded;
+  font-family: "Poppins", sans-serif;
+}
+
+.sidebar.active {
+  background: rgb(249 250 251);
+  color: rgb(15 23 42);
+}
+
+.BottomNavActive.active{
+  position: relative;
+  border-radius: 100%;
+  background: linear-gradient(90deg, rgba(74,222,128,1) 0%, rgba(37,99,235,1) 100%);
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.hamburger-lines {
+  @apply block w-[30px] h-[2px] bg-slate-900 mb-2;
+}
+
+.hamburger-active > span:nth-child(1) {
+  @apply rotate-45;
+}
+
+.hamburger-active > span:nth-child(2) {
+  @apply scale-0;
+}
+
+.hamburger-active > span:nth-child(3) {
+  @apply -rotate-45;
+}
