@@ -46,7 +46,7 @@ const MapsLeafletUser = ({ devices }) => {
     const { latitude, longtitude } = device
     if (mapRef.current) {
       mapRef.current.flyTo([latitude, longtitude], 18, {
-        duration: 1
+        duration: 2
       })
     }
   }
