@@ -104,22 +104,12 @@ const TableDevices = () => {
                 <th
                   className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
                 >
-                  Owner
-                </th>
-                <th
-                  className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
-                >
                   Latitude
                 </th>
                 <th
                   className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
                 >
                   Longitude
-                </th>
-                <th
-                  className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
-                >
-                  Tipe
                 </th>
                 <th
                   className="whitespace-nowrap px-4 py-2 text-left font-semibold text-gray-900"
@@ -152,10 +142,8 @@ const TableDevices = () => {
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700 font-semibold text-center">{index + 1 + (currentPage - 1) * limit}</td>
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">{device.guid}</td>
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">{device.name}</td>
-                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">{device.owner.name}</td>
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">{device.latitude}</td>
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">{device.longtitude}</td>
-                        <td className="whitespace-nowrap px-4 py-2 text-gray-700">{device.type}</td>
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">{device.isActive
                           ? <span className='inline-block bg-green-400 rounded text-sm text-white px-2'>Aktif</span>
                           : <span className='inline-block bg-red-400 rounded text-sm text-white px-2'>Non Aktif</span>}
