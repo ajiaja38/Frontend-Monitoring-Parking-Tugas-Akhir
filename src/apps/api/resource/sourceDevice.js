@@ -1,7 +1,14 @@
+import axios from 'axios'
 import API_ENDPOINT from '../global/api-endpoint'
 import api from '../packages/interceptors'
 
-const { DEVICES, DEVICE_BY_ID, DEVICE_PARTNER_BY_ID, DEVICE_PAGINATION } = API_ENDPOINT
+const {
+  DEVICES,
+  DEVICE_BY_ID,
+  DEVICE_PARTNER_BY_ID,
+  DEVICE_PAGINATION,
+  GET_DATA_CAPTURE_BY_ID
+} = API_ENDPOINT
 
 class DeviceSourceAPI {
   static async addDevice (data) {
@@ -37,6 +44,11 @@ class DeviceSourceAPI {
   static async addPartnerDeviceById (id, data) {
     const response = await api.put(DEVICE_PARTNER_BY_ID(id), data)
     return response.data.message
+  }
+
+  static async getDataCaptureById (id) {
+    const response = await axios.get(GET_DATA_CAPTURE_BY_ID(id))
+    return response.data.data
   }
 }
 

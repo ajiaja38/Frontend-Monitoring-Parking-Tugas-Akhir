@@ -3,49 +3,40 @@
 import React, { useEffect, useState } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
-import axios from 'axios'
-import API_ENDPOINT from '../../../api/global/api-endpoint'
 import redCar from '../../assets/images/modal/redCar.png'
 import greenCar from '../../assets/images/modal/greenCar.png'
 import ToastNotification from '../helpers/toast'
+import DeviceSourceAPI from '../../../api/resource/sourceDevice'
 
 const ModalCaptureCameraDetail = ({ open, onCloseModal, guid, name }) => {
-  const { GET_DATA_CAMERA_BY_ID } = API_ENDPOINT
-
-  const [data, setData] = useState([])
   const [updateTime, setUpdateTime] = useState(null)
   const [firstLineParking, setFirstLineParking] = useState([])
   const [secondLineParking, setSecondLineParking] = useState([])
   const [displayChange, setDisplayChange] = useState(false)
   const [capture, setCapture] = useState('')
 
-  const getDataDeviceById = async (guidDevice) => {
+  const getDataCapture = async (id) => {
     try {
-      const response = await axios.get(GET_DATA_CAMERA_BY_ID(guidDevice), {
-        headers: {
-          'access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMzIyMTExMSIsIm5hbWUiOiJBc2VwIFRyaXNuYSBTZXRpYXdhbiIsImlhdCI6MTUxNjIzOTAyMn0.kzskxWt0MbHYfPJLw-2eCq4uJZeozxj5gWmH2GHju4M'
-        }
-      })
-      setData(response.data.data)
-      setUpdateTime(response.data.datetime)
+      const response = await DeviceSourceAPI.getDataCaptureById(id)
+      console.log(response)
+      setCapture(response.namafile)
+      setFirstLineParking(response.hasil.baris_1)
+      setSecondLineParking(response.hasil.baris_2)
+      setUpdateTime(response.dateTime)
     } catch (error) {
       ToastNotification.toastError(error.response.data.message)
     }
   }
 
   useEffect(() => {
-    getDataDeviceById(guid)
-  }, [])
+    const interval = setInterval(() => {
+      getDataCapture(guid)
+    }, 3000)
 
-  useEffect(() => {
-    if (data.length) {
-      data.map(item => {
-        setFirstLineParking(item.hasil.baris_1)
-        setSecondLineParking(item.hasil.baris_2)
-        setCapture(item.namafile)
-      })
+    return () => {
+      clearInterval(interval)
     }
-  }, [data])
+  }, [])
 
   const changeDisplay = () => {
     setDisplayChange(!displayChange)
@@ -153,7 +144,7 @@ const ModalCaptureCameraDetail = ({ open, onCloseModal, guid, name }) => {
               : (<>Lihat Gambar Asli</>)
           }
         </button>
-        <h2 className='text-sm'>Terakhir Update: { updateTime }</h2>
+        <h2 className='text-xs lg:text-sm'>Terakhir Update: { updateTime }</h2>
       </div>
     </Modal>
   )

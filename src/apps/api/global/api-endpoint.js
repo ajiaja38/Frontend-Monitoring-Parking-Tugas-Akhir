@@ -1,6 +1,6 @@
 import CONFIG from './config'
 
-const { BASE_URL, BASE_URL_V2 } = CONFIG
+const { BASE_URL, BASE_URL_V2, BASE_URL_V3 } = CONFIG
 
 const API_ENDPOINT = {
   AUTHENTICATIONS: `${BASE_URL}/authentications`,
@@ -14,6 +14,7 @@ const API_ENDPOINT = {
   OTP_VERIFICATION: `${BASE_URL}/user/otp`,
   UPLOAD_AVATAR: (id) => `${BASE_URL}/user/${id}/images`,
   GET_DATA_CAMERA_BY_ID: (id) => `${BASE_URL_V2}/camera/${id}`,
+  GET_DATA_CAPTURE_BY_ID: (id) => `${BASE_URL_V3}/capture/${id}`,
   GET_DATA_SENSOR_BY_ID: (id) => `${BASE_URL_V2}/sensor/${id}`
 }
 
