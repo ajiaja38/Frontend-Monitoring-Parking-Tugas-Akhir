@@ -18,7 +18,6 @@ const ModalCaptureCameraDetail = ({ open, onCloseModal, guid, name }) => {
   const getDataCapture = async (id) => {
     try {
       const response = await DeviceSourceAPI.getDataCaptureById(id)
-      console.log(response)
       setCapture(response.namafile)
       setFirstLineParking(response.hasil.baris_1)
       setSecondLineParking(response.hasil.baris_2)
@@ -31,7 +30,7 @@ const ModalCaptureCameraDetail = ({ open, onCloseModal, guid, name }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       getDataCapture(guid)
-    }, 3000)
+    }, 15000)
 
     return () => {
       clearInterval(interval)
