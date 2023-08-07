@@ -28,6 +28,7 @@ const ModalCaptureCameraDetail = ({ open, onCloseModal, guid, name }) => {
   }
 
   useEffect(() => {
+    getDataCapture(guid)
     const interval = setInterval(() => {
       getDataCapture(guid)
     }, 15000)
